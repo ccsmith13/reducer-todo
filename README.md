@@ -12,7 +12,7 @@ Commit your code regularly and meaningfully. This helps both you and your team l
 
 ### Description
 
-In this project, you build an app that let's you display a todo list from reducer state, and update todo items as completed and clear completed todos from the list by dispatching different actions.
+In this project, you build an app that lets you display a todo list from reducer state, and update todo items as completed and clear completed todos from the list by dispatching different actions.
 
 ## Project Set Up
 
