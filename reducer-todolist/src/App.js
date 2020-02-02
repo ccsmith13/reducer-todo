@@ -22,7 +22,10 @@ function App() {
       <ul>
         {state.todoitems.map((todo) => {
           return (
-            <li>{todo.item}</li>
+            <div key={todo.id}>
+              <li>Task: {todo.item}, Completed? {todo.completed.toString()}</li>
+              <button onClick={() => dispatch({ type: 'TOGGLE_TODO', id: todo.id })}>Toggle Task Completion</button>
+            </div>
           )
         })}
       </ul>
