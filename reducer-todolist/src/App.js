@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer, useState } from 'react';
+import { reducer, initialState } from "./reducers/reducer";
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [input, setInput] = useState("");
+
+  function handleChange(event) {
+    setInput(event.target.value);
+    event.preventDefault();
+  }
+
+  console.log("state", state);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>To Do List App Using the Reducer</h1>
+      <label>
+        Enter Item Here
+          <input type="text" onChange={handleChange} />
+      </label>
+      <input type="submit" value="Submit" onClick={() => dispatch({ type: 'ADD_TODO', item: input })} />
+      <ul>
+        {state.todoitems.map((todo) => {
+          return (
+            <li>{todo.item}</li>
+          )
+        })}
+      </ul>
     </div>
   );
 }

@@ -1,21 +1,26 @@
-import React, { useReducer } from 'react'
 
-export const initialState = [];
-// Initial to do list is established
+export const initialState = {
+    todoitems: []
+};
 
 export const reducer = (state, action) => {
-    const { type } = action;
-    // we can store data in an action object at action.payload
-    switch (type) {
+    console.log('entering the reducer function')
+    console.log('action', action)
+    switch (action.type) {
         case "ADD_TODO":
             const newToDo = {
                 id: new Date().getUTCMilliseconds(),
-                item: action.payload.item,
+                item: action.item,
+                completed: false,
             };
-            return [...state, newToDo]
+            console.log("action", action);
+            let arrayCopy = state.todoitems;
+            arrayCopy.push(newToDo);
+            console.log(state);
+            return { ...state, todoitems: arrayCopy }
         case "DELETE_TODO":
-            return [...state].filter(element => element.id !== action.payload.id);
+            return state.todoitems.filter(element => element.id !== action.id);
         default:
-            return state;
+            return (state);
     }
 };
