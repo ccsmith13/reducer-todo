@@ -29,6 +29,7 @@ function App() {
           )
         })}
       </ul>
+      <button onClick={() => dispatch({ type: 'CLEAR_COMPLETED' })}>Clear Completed Items</button>
     </div>
   );
 }

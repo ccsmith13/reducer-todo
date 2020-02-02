@@ -19,9 +19,9 @@ export const reducer = (state, action) => {
             arrayCopy.push(newToDo);
             console.log(state);
             return { ...state, todoitems: arrayCopy }
-
-        case "DELETE_TODO":
-            return state.todoitems.filter(element => element.id !== action.id);
+        /* 
+                case "DELETE_TODO":
+                    return state.todoitems.filter(element => element.id !== action.id); */
 
         case "TOGGLE_TODO":
             //console.log('toggle function is called')
@@ -38,6 +38,16 @@ export const reducer = (state, action) => {
                     });
                 }
             }
+
+        case "CLEAR_COMPLETED":
+            let filteredToDoItems = [];
+            for (let i = 0; i < state.todoitems.length; i++) {
+                let currentCompletedState = state.todoitems[i].completed;
+                if (currentCompletedState === false) {
+                    filteredToDoItems.push(state.todoitems[i]);
+                }
+            }
+            return { ...state, todoitems: filteredToDoItems };
 
         default:
             return (state);
