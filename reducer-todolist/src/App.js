@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import { reducer, initialState } from "./reducers/reducer";
+import './App.css';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -8,6 +9,10 @@ function App() {
   function handleChange(event) {
     setInput(event.target.value);
     event.preventDefault();
+  }
+  function toggleStrikethrough(itemid) {
+    var element = document.getElementById(itemid);
+    element.classList.toggle("strikethrough");
   }
 
   console.log("state", state);
@@ -22,9 +27,9 @@ function App() {
       <ul>
         {state.todoitems.map((todo) => {
           return (
-            <div key={todo.id}>
+            <div id={todo.id} key={todo.id}>
               <li>Task: {todo.item}, Completed? {todo.completed.toString()}</li>
-              <button onClick={() => dispatch({ type: 'TOGGLE_TODO', id: todo.id })}>Toggle Task Completion</button>
+              <button onClick={() => dispatch({ type: 'TOGGLE_TODO', id: todo.id }, toggleStrikethrough(todo.id))}>Toggle Task Completion</button>
               <button onClick={() => dispatch({ type: 'DELETE_TODO', id: todo.id })}>Remove This Item</button>
             </div>
           )
