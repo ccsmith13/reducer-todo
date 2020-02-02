@@ -25,6 +25,7 @@ function App() {
             <div key={todo.id}>
               <li>Task: {todo.item}, Completed? {todo.completed.toString()}</li>
               <button onClick={() => dispatch({ type: 'TOGGLE_TODO', id: todo.id })}>Toggle Task Completion</button>
+              <button onClick={() => dispatch({ type: 'DELETE_TODO', id: todo.id })}>Remove This Item</button>
             </div>
           )
         })}
